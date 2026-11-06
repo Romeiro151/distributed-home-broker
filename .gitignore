@@ -9,7 +9,6 @@
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
-.metals/
 # Package Files #
 *.jar
 *.war
@@ -23,3 +22,7 @@
 hs_err_pid*
 replay_pid*
 /bin/
+.metals/
+.idea/
+.vscode/
+*.iml
