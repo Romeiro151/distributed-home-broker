@@ -16,6 +16,7 @@ import iscot.client.gui.LightIcon;
 import iscot.client.gui.VentilatorIcon;
 import iscot.enums.Areas;
 import iscot.enums.Type;
+import iscot.event.AreaVentilationOrderEvent;
 
 public class Ventilator {
 
@@ -61,6 +62,9 @@ public class Ventilator {
 			// TODO: receive and handle messages from server
 			
 			// TODO: for first phase: create an appropriate event hardcoded locally and change the GUI accordingly
+			AreaVentilationOrderEvent ordemExemplo = new AreaVentilationOrderEvent(area, false);
+			Thread.sleep(3000);
+			ventilator.setAtivo(ordemExemplo.isActivate());
 		}
 	}
 }
