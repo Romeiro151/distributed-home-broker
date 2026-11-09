@@ -62,9 +62,18 @@ public class Ventilator {
 			// TODO: receive and handle messages from server
 			
 			// TODO: for first phase: create an appropriate event hardcoded locally and change the GUI accordingly
-			AreaVentilationOrderEvent ordemExemplo = new AreaVentilationOrderEvent(area, false);
+
+			//Exemplo para desligar
 			Thread.sleep(3000);
-			ventilator.setAtivo(ordemExemplo.isActivate());
+			AreaVentilationOrderEvent ordemOff = new AreaVentilationOrderEvent(area, false);
+			System.out.println("Ordem recebida - " + ordemOff);
+			ventilator.setAtivo(ordemOff.isActivate());
+
+			//Exemplo para ligar
+			Thread.sleep(3000);
+			AreaVentilationOrderEvent ordemOn = new AreaVentilationOrderEvent(area, true);
+			System.out.println("Ordem recebida - " + ordemOn);
+			ventilator.setAtivo(ordemOn.isActivate());
 		}
 	}
 }

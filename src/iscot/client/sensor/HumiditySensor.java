@@ -45,7 +45,7 @@ public class HumiditySensor {
 				    valor -> {
 				    	// TODO handle change in sensor
 				    	HumiditySensorEvent hse = new HumiditySensorEvent(area, valor);
-						System.out.println("HumiditySensorEvent: %- " + hse.getValue() + " Area- " + hse.getArea());
+						System.out.println("HumiditySensorEvent: " + hse.getValue() + "% na área - " + hse.getArea());
 				    });
 			painel.add(sensorControl,BorderLayout.CENTER);
 			janela.setContentPane(painel);

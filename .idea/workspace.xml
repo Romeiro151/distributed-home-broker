@@ -5,24 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9e1cb55-fb73-4a13-b9f7-25a1586f4748" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/iscot/client/decider/AirConditioningDecider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/iscot/client/decider/LightDecider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/iscot/client/decider/VentilatorDecider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/event/AreaIrrigationOrderEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/AreaIrrigationOrderEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/event/AreaLightingOrderEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/AreaLightingOrderEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/event/AreaTemperatureOrderEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/AreaTemperatureOrderEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/event/AreaVentilationOrderEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/AreaVentilationOrderEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/event/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/event/GroundMoistureSensorEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/GroundMoistureSensorEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/event/HighOrderLevelEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/HighOrderLevelEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/event/HumiditySensorEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/HumiditySensorEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/event/LightSensorEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/LightSensorEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/event/RegistrationEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/RegistrationEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/event/SensorEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/SensorEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/event/TemperatureSensorEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/TemperatureSensorEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/client/actuator/AC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/actuator/AirConditioning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/client/actuator/Irrigation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/actuator/Irrigation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/client/actuator/Light.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/actuator/Light.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/client/actuator/Ventilator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/actuator/Ventilator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/client/decider/a.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/decider/IrrigationDecider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/client/sensor/GroundMoistureSensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/sensor/GroundMoistureSensor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/client/sensor/HumiditySensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/sensor/HumiditySensor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/client/sensor/LightSensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/sensor/LightSensor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/client/sensor/TemperatureSensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/sensor/TemperatureSensor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -44,6 +51,9 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="3LdjgEOqnLFznxSYE16pGBB6ZeO" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -56,12 +66,14 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "ze",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Utilizador/Desktop/ProjetoPCD_26_27_IscoT_GUI",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm"
   }
@@ -86,5 +98,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Correção de todos os eventos e clarificação com comentários." />
+    <option name="LAST_COMMIT_MESSAGE" value="Correção de todos os eventos e clarificação com comentários." />
   </component>
 </project>

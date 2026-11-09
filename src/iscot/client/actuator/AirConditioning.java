@@ -1,24 +1,18 @@
 package iscot.client.actuator;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
 import java.net.UnknownHostException;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import iscot.client.gui.ACIcon;
 import iscot.enums.Areas;
-import iscot.enums.Type;
 import iscot.event.AreaTemperatureOrderEvent;
 import iscot.enums.AirConditioningMode;
 
-public class AC {
+public class AirConditioning {
 
 	/**
 	 * 
@@ -63,12 +57,18 @@ public class AC {
 			// TODO: receive and handle messages from server
 			
 			// TODO: for first phase: create an appropriate event hardcoded locally and change the GUI accordingly
-			AreaTemperatureOrderEvent ordemExemplo = new AreaTemperatureOrderEvent(area, AirConditioningMode.Desligado);
+
+			// Exemplo desligado
 			Thread.sleep(3000);
-			if(ordemExemplo.getMode() == AirConditioningMode.Desligado){
-                ac.setAtivo(false);
-            }
-                
+			AreaTemperatureOrderEvent ordemOff = new AreaTemperatureOrderEvent(area, AirConditioningMode.Desligado);
+			System.out.println("Ordem recebida - " + ordemOff);
+			ac.setAtivo(false);
+
+			// Exemplo ligado em qualquer modo
+			Thread.sleep(3000);
+			AreaTemperatureOrderEvent ordemOn = new AreaTemperatureOrderEvent(area, AirConditioningMode.Frio); // Escolhemos frio aqui, mas pode qualquer outro exceto "Desligado"
+			System.out.println("Ordem recebida - " + ordemOn);
+			ac.setAtivo(true);
 		}
 	}
 }

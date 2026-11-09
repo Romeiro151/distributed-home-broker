@@ -44,7 +44,7 @@ public class TemperatureSensor {
 				    valor -> {
 				    	// TODO handle change in sensor
 				    	TemperatureSensorEvent tse = new TemperatureSensorEvent(area, valor);
-						System.out.println("TemperatureSensorEvent: ºC- " + tse.getValue() + " Area- " + tse.getArea());
+						System.out.println("TemperatureSensorEvent: " + tse.getValue() + "ºC na área- " + tse.getArea());
 				    });
 			painel.add(sensorControl,BorderLayout.CENTER);
 			janela.setContentPane(painel);
