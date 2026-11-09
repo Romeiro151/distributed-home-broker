@@ -1,11 +1,8 @@
 package iscot.client.decider;
 
 import iscot.enums.Areas;
-import iscot.enums.Type;
 import iscot.event.AreaIrrigationOrderEvent;
 import iscot.event.GroundMoistureSensorEvent;
-import iscot.event.RegistrationEvent;
-
 public class IrrigationDecider {
 
     public static void main(String[] args) throws NumberFormatException, InterruptedException {
