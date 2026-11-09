@@ -18,6 +18,7 @@ public class AirConditioningDecider {
             TemperatureSensorEvent tse = new TemperatureSensorEvent(area, 30.0);
             System.out.println("Recebi a leitura de " + tse);
 
+            // Exemplo de ordem a dar ao atuador para usar o modo frio do AC
             boolean frio = tse.getValue() > 25;
             if(frio){
                 AreaTemperatureOrderEvent ordemParaAtuador = new AreaTemperatureOrderEvent(area, AirConditioningMode.Frio);

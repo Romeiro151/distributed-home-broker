@@ -1,8 +1,8 @@
 package iscot.client.decider;
 
 import iscot.enums.Areas;
-import iscot.event.AreaVentilationOrderEvent;
 import iscot.event.HumiditySensorEvent;
+import iscot.event.AreaVentilationOrderEvent;
 
 public class VentilatorDecider {
     public static void main(String[] args) throws NumberFormatException, InterruptedException {
