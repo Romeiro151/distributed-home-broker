@@ -1,12 +1,8 @@
 package iscot.client.decider;
 
-import iscot.client.sensor.HumiditySensor;
 import iscot.enums.Areas;
-import iscot.enums.Type;
-import iscot.event.AreaLightingOrderEvent;
+import iscot.event.AreaVentilationOrderEvent;
 import iscot.event.HumiditySensorEvent;
-import iscot.event.LightSensorEvent;
-import iscot.event.RegistrationEvent;
 
 public class VentilatorDecider {
     public static void main(String[] args) throws NumberFormatException, InterruptedException {
@@ -22,7 +18,7 @@ public class VentilatorDecider {
             System.out.println("Recebi a leitura de " + hse);
 
             boolean on = hse.getValue() > 75;
-            AreaLightingOrderEvent ordemParaAtuador = new AreaLightingOrderEvent(area, on);
+            AreaVentilationOrderEvent ordemParaAtuador = new AreaVentilationOrderEvent(area, on);
             System.out.println("Emitiu-se a ordem para  " + ordemParaAtuador);
 
         }

@@ -2,9 +2,7 @@ package iscot.client.decider;
 
 import iscot.enums.AirConditioningMode;
 import iscot.enums.Areas;
-import iscot.event.AreaLightingOrderEvent;
 import iscot.event.AreaTemperatureOrderEvent;
-import iscot.event.LightSensorEvent;
 import iscot.event.TemperatureSensorEvent;
 
 public class AirConditioningDecider {
