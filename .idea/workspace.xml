@@ -4,20 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9e1cb55-fb73-4a13-b9f7-25a1586f4748" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/iscot/client/decider/AirConditioningDecider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/iscot/client/decider/LightDecider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/iscot/client/decider/VentilatorDecider.java" afterDir="false" />
+    <list default="true" id="d9e1cb55-fb73-4a13-b9f7-25a1586f4748" name="Changes" comment="Correção de todos os eventos e clarificação com comentários.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/client/actuator/AC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/actuator/AirConditioning.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/client/actuator/Irrigation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/actuator/Irrigation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/client/actuator/Light.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/actuator/Light.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/client/actuator/Ventilator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/actuator/Ventilator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/client/decider/a.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/decider/IrrigationDecider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/client/sensor/GroundMoistureSensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/sensor/GroundMoistureSensor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/client/sensor/HumiditySensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/sensor/HumiditySensor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/client/sensor/LightSensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/sensor/LightSensor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/client/sensor/TemperatureSensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/sensor/TemperatureSensor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/client/decider/AirConditioningDecider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/decider/AirConditioningDecider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,26 +47,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.AC.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "ze",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Utilizador/Desktop/ProjetoPCD_26_27_IscoT_GUI",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.jshint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.jshint": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.AC.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ze&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Utilizador/Desktop/ProjetoPCD_26_27_IscoT_GUI&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -102,5 +91,17 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Correção de todos os eventos e clarificação com comentários." />
     <option name="LAST_COMMIT_MESSAGE" value="Correção de todos os eventos e clarificação com comentários." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="NONE" type="java-line">
+          <url>file://$PROJECT_DIR$/src/iscot/client/decider/IrrigationDecider.java</url>
+          <line>6</line>
+          <placement>INTER_LINE</placement>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
