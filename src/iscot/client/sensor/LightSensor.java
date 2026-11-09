@@ -44,7 +44,7 @@ public class LightSensor {
 				    valor -> {
 				    	// TODO handle change in sensor
 				    	LightSensorEvent lse = new LightSensorEvent(area, valor);
-						System.out.println("HumiditySensorEvent: %- " + lse.getValue() + " Area- " + lse.getArea());
+						System.out.println("HumiditySensorEvent: " + lse.getValue() + "% na área- " + lse.getArea());
 				    });
 			painel.add(sensorControl,BorderLayout.CENTER);
 			janela.setContentPane(painel);

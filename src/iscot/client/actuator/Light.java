@@ -61,9 +61,18 @@ public class Light {
 			// TODO: receive and handle messages from server
 			
 			// TODO: for first phase: create an appropriate event hardcoded locally and change the GUI accordingly
-			AreaLightingOrderEvent ordemExemplo = new AreaLightingOrderEvent(area, false);
+
+			// Exemplo para desligar
 			Thread.sleep(3000);
-			light.setAtivo(ordemExemplo.isOn());
+			AreaLightingOrderEvent ordemOff = new AreaLightingOrderEvent(area, false);
+			System.out.println("Ordem recebida - " + ordemOff);
+			light.setAtivo(ordemOff.isOn());
+
+			// Exemplo para ligar
+			Thread.sleep(3000);
+			AreaLightingOrderEvent ordemOn = new AreaLightingOrderEvent(area, true);
+			System.out.println("Ordem recebida - " + ordemOn);
+			light.setAtivo(ordemOn.isOn());
 		}
 	}
 }

@@ -62,9 +62,18 @@ public class Irrigation {
 			// TODO: receive and handle messages from server
 			
 			// TODO: for first phase: create an appropriate event hardcoded locally and change the GUI accordingly
-			AreaIrrigationOrderEvent ordemExemplo = new AreaIrrigationOrderEvent(area, false);
+
+			// Exemplo para desligar
 			Thread.sleep(3000);
-			irrig.setAtivo(ordemExemplo.isActivate());
+			AreaIrrigationOrderEvent ordemOff = new AreaIrrigationOrderEvent(area, false);
+			System.out.println("Ordem recebida - " + ordemOff);
+			irrig.setAtivo(ordemOff.isActivate());
+
+			// Exemplo para ligar
+			Thread.sleep(3000);
+			AreaIrrigationOrderEvent ordemOn = new AreaIrrigationOrderEvent(area, true);
+			System.out.println("Ordem recebida - " + ordemOn);
+			irrig.setAtivo(ordemOn.isActivate());
 		}
 	}
 }

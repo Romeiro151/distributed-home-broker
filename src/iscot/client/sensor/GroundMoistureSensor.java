@@ -44,7 +44,7 @@ public class GroundMoistureSensor {
 				    valor -> {
 				    	// TODO handle change in sensor
 				    	GroundMoistureSensorEvent gmse = new GroundMoistureSensorEvent(area, valor);
-						System.out.println("GroundMoistureSensorEvent: %- " + gmse.getValue() + " Area- " + gmse.getArea());
+						System.out.println("GroundMoistureSensorEvent: " + gmse.getValue() + "% na área - " + gmse.getArea());
 				    });
 			painel.add(sensorControl,BorderLayout.CENTER);
 			janela.setContentPane(painel);
