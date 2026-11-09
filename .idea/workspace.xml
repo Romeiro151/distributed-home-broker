@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9e1cb55-fb73-4a13-b9f7-25a1586f4748" name="Changes" comment="" />
+    <list default="true" id="d9e1cb55-fb73-4a13-b9f7-25a1586f4748" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/event/AreaIrrigationOrderEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/AreaIrrigationOrderEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/event/AreaLightingOrderEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/AreaLightingOrderEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/event/AreaTemperatureOrderEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/AreaTemperatureOrderEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/event/AreaVentilationOrderEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/AreaVentilationOrderEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/event/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/event/GroundMoistureSensorEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/GroundMoistureSensorEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/event/HighOrderLevelEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/HighOrderLevelEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/event/HumiditySensorEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/HumiditySensorEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/event/LightSensorEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/LightSensorEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/event/RegistrationEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/RegistrationEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/event/SensorEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/SensorEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/event/TemperatureSensorEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/TemperatureSensorEvent.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,22 +27,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "LEI-129838"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;LEI-129838&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Romeiro151/distributed-home-broker.git",
-    "accountId": "d01f1bb8-7021-4d8d-8eee-7853f6c28a06"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Romeiro151/distributed-home-broker.git&quot;,
+    &quot;accountId&quot;: &quot;d01f1bb8-7021-4d8d-8eee-7853f6c28a06&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="3LdjgEOqnLFznxSYE16pGBB6ZeO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -33,12 +50,20 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.AC.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "ze"
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Utilizador/Desktop/ProjetoPCD_26_27_IscoT_GUI",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm"
   }
 }]]></component>
   <component name="SharedIndexes">
@@ -58,5 +83,8 @@
       <updated>1793790951699</updated>
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

@@ -1,20 +1,18 @@
 package iscot.event;
 
 import iscot.enums.Areas;
+import iscot.enums.Type;
 
 public abstract class SensorEvent extends Event {
-    private static final long serialVersionUID = 1L;
-    private double value;
 
-    // Construtor de todas as variáveis
-    public SensorEvent(Areas area, Double value) {
+    // Construtor usando a classe de topo (Event)
+    public SensorEvent(Areas area) {
         super(area);
-        this.value = value;
     }
 
-    // Getter do valor
-    public double getValue() {
-        return value;
+    // Obter o Tipo do cliente (Neste caso é sensor)
+    public Type getType(){
+        return Type.SENSOR;
     }
   
 }
