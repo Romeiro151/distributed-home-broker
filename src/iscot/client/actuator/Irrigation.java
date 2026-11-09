@@ -1,4 +1,4 @@
-package iscot.client;
+package iscot.client.actuator;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -12,13 +12,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import iscot.client.gui.LightIcon;
-import iscot.client.gui.VentilatorIcon;
+
+import iscot.client.gui.IrrigationIcon;
 import iscot.enums.Areas;
 import iscot.enums.Type;
-import iscot.event.AreaVentilationOrderEvent;
+import iscot.event.AreaIrrigationOrderEvent;
 
-public class Ventilator {
+public class Irrigation {
 
 	/**
 	 * 
@@ -40,7 +40,7 @@ public class Ventilator {
 			// TODO register with the server
 			Areas area=Areas.valueOf(args[2]);
 			
-			JFrame janela = new JFrame("Ventilador em "+area);
+			JFrame janela = new JFrame("Irrigação em "+area);
 			janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		
@@ -48,8 +48,8 @@ public class Ventilator {
 			// Criar os componentes gráficos
 			JPanel painel=new JPanel();
 			painel.setLayout(new BorderLayout());
-			VentilatorIcon ventilator = new VentilatorIcon();
-			painel.add(ventilator,BorderLayout.CENTER);
+			IrrigationIcon irrig = new IrrigationIcon();
+			painel.add(irrig,BorderLayout.CENTER);
 			janela.setContentPane(painel);
 			janela.setLocation(600, 400);
 			janela.setMinimumSize(janela.getSize());
@@ -57,14 +57,14 @@ public class Ventilator {
 			janela.setVisible(true);
 			
 			Thread.sleep(5000);
-			ventilator.setAtivo(true);
+			irrig.setAtivo(true);
 
 			// TODO: receive and handle messages from server
 			
 			// TODO: for first phase: create an appropriate event hardcoded locally and change the GUI accordingly
-			AreaVentilationOrderEvent ordemExemplo = new AreaVentilationOrderEvent(area, false);
+			AreaIrrigationOrderEvent ordemExemplo = new AreaIrrigationOrderEvent(area, false);
 			Thread.sleep(3000);
-			ventilator.setAtivo(ordemExemplo.isActivate());
+			irrig.setAtivo(ordemExemplo.isActivate());
 		}
 	}
 }
