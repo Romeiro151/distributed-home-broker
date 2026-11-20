@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9e1cb55-fb73-4a13-b9f7-25a1586f4748" name="Changes" comment="Correção de todos os eventos e clarificação com comentários.">
+      <change afterPath="$PROJECT_DIR$/src/iscot/server/ClientHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/iscot/server/IscoTServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/client/decider/AirConditioningDecider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/decider/AirConditioningDecider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/event/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/event/RegistrationEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/RegistrationEvent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,22 +37,22 @@
     &quot;assignee&quot;: &quot;LEI-129838&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Romeiro151/distributed-home-broker.git",
-    "accountId": "d01f1bb8-7021-4d8d-8eee-7853f6c28a06"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Romeiro151/distributed-home-broker.git&quot;,
+    &quot;accountId&quot;: &quot;d01f1bb8-7021-4d8d-8eee-7853f6c28a06&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "Romeiro151",
-    "repository": "distributed-home-broker"
+    &quot;owner&quot;: &quot;Romeiro151&quot;,
+    &quot;repository&quot;: &quot;distributed-home-broker&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 7
@@ -65,6 +68,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.AC.executor": "Run",
+    "Application.IscoTServer.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -72,7 +76,7 @@
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Utilizador/Desktop/ProjetoPCD_26_27_IscoT_GUI",
+    "last_opened_file_path": "C:/Users/Utilizador/Desktop/PCD_Projeto",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.jshint": "true",
     "node.js.detected.package.tslint": "true",
@@ -112,7 +116,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="NONE" type="java-line">
           <url>file://$PROJECT_DIR$/src/iscot/client/decider/IrrigationDecider.java</url>
-          <line>6</line>
+          <line>7</line>
           <placement>INTER_LINE</placement>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
