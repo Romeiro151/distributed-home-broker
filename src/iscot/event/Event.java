@@ -10,6 +10,7 @@ public abstract class Event implements Serializable {
     private Areas area;
     private LocalDateTime timestamp;
     private static final long serialversionID = 1L;
+    private String deviceID;
     
     // Contrutor da classe mãe Event
     public Event(Areas area) {
@@ -27,9 +28,17 @@ public abstract class Event implements Serializable {
         return timestamp;
     }
 
+    public String getDeviceID(){
+        return deviceID;
+    }
+
+    public void setDeviceID(String deviceID){
+        this.deviceID = deviceID;
+    }
+
     //To String
     @Override
     public String toString(){
-        return timestamp.toLocalTime() +" - Area: " + area;
+        return timestamp.toLocalTime() +" - Area: " + area + (deviceID != null ? " [" + deviceID + "]" : "");
     }
 }
