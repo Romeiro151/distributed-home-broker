@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9e1cb55-fb73-4a13-b9f7-25a1586f4748" name="Changes" comment="Correção de todos os eventos e clarificação com comentários.">
-      <change afterPath="$PROJECT_DIR$/src/iscot/client/ServerConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/event/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/client/ServerConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/ServerConnection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +71,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "ze",
+    "git-widget-placeholder": "#8 on ze",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Utilizador/Desktop/PCD_Projeto",
     "node.js.detected.package.eslint": "true",

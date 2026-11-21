@@ -60,5 +60,5 @@ public class ServerConnection {
 
         private String getDeviceID(){
             return deviceID;
-    }
+        }
 }
