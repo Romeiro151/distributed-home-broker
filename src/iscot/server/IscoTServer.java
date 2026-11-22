@@ -7,11 +7,15 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+import iscot.enums.Type;
+import iscot.event.Event;
+
 public class IscoTServer {
     public static final int PORTO = 8080;
     private final int porto;
     private int numeroProxID = 1;
-    private final List<ClientHandler> clientesConectados = new ArrayList<>();
+    private List<ClientHandler> clientesConectados = new ArrayList<>();
+    private List<Event> eventos = new ArrayList<>();
 
     public IscoTServer(int porto){
         this.porto = porto;
@@ -51,6 +55,30 @@ public class IscoTServer {
     public synchronized void removeClient(ClientHandler client){
         clientesConectados.remove(client);
         System.out.println("[IscoT Server] Cliente desconectado: " + client.getDeviceId());
+    }
+
+    // Fase 6
+    public List<ClientHandler> eventHandler(Event event, Type clientType){
+        //Estou a adicionar o evento a lista de eventos diretamente mas posteriormente a inserçao e tratamento de eventos vai ser gerida segundo os principios da concorrencia. Apenas para a Fase 6.
+        eventos.add(event);
+        List<ClientHandler> clients = new ArrayList<>();
+        if(clientType == Type.SENSOR){
+            for(ClientHandler c : clientesConectados){
+                if(c.getClientType() == Type.DECIDER){
+                    clients.add(c);
+                }
+            }
+        }
+        else if(clientType == Type.DECIDER){
+            for(ClientHandler c : clientesConectados){
+                if(c.getClientType() == Type.ACTUATOR){
+                    clients.add(c);
+                }
+            }
+        }
+
+        return clients;
+        
     }
 
     public static void main(String[] args){

@@ -1,14 +1,17 @@
 package iscot.server;
 
 import iscot.enums.Areas;
+import iscot.event.Event;
 import iscot.event.RegistrationEvent;
 import iscot.enums.Type;
 
+import java.awt.List;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ClientHandler extends Thread {
     private final Socket socket;
@@ -77,9 +80,20 @@ public class ClientHandler extends Thread {
         out.writeObject(eventoCliente);
         out.flush();
 
+        // Fase 6
         while (true) {
             Object objeto = in.readObject();
             System.out.println("[" + deviceId + "] Evento Recebido: " + objeto);
+            ArrayList<ClientHandler> dests = new ArrayList<>();
+            if(objeto instanceof Event){
+                dests = (ArrayList<ClientHandler>) server.eventHandler((Event) objeto, clientType);
+            }
+            if(dests != null){
+                for(ClientHandler c : dests){
+                    c.out.reset();
+                    c.out.writeObject(objeto);
+                }
+            }
         }
     }
 

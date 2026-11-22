@@ -56,6 +56,13 @@ public class TemperatureSensor extends Client{
 				    	// TODO handle change in sensor
 				    	TemperatureSensorEvent tse = new TemperatureSensorEvent(area, valor);
 						System.out.println("TemperatureSensorEvent: " + tse.getValue() + "ºC na área- " + tse.getArea());
+						
+						// Fase 6
+						try {
+							client.sendEvent(tse);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 				    });
 			painel.add(sensorControl,BorderLayout.CENTER);
 			janela.setContentPane(painel);

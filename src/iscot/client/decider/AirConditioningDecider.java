@@ -29,6 +29,7 @@ public class AirConditioningDecider extends Client{
             // register with the server
             client.registerWithServer();
 
+            /*
             // Receção da leitura do  sensor
             Thread.sleep(3000);
             TemperatureSensorEvent tse = new TemperatureSensorEvent(area, 30.0);
@@ -53,7 +54,18 @@ public class AirConditioningDecider extends Client{
             if(boaTemperatura){
                 AreaTemperatureOrderEvent ordemParaAtuador = new AreaTemperatureOrderEvent(area, AirConditioningMode.Aquecimento);
                 System.out.println("Emitiu-se a ordem de ventilar para  " + ordemParaAtuador);
-            }
+            }*/
+
+            // Fase 6
+            while(true){
+				Object event = client.receiveEvent();
+				if(event instanceof TemperatureSensorEvent && ((TemperatureSensorEvent) event).getType() == Type.SENSOR && ((TemperatureSensorEvent) event).getArea() == client.getArea()){
+					if(((TemperatureSensorEvent) event).getValue() > 30){
+                        AreaTemperatureOrderEvent order = new AreaTemperatureOrderEvent(area, AirConditioningMode.Frio);
+						client.sendEvent(order);
+					}
+				}
+			}
         }
     }
 }
