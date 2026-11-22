@@ -12,13 +12,14 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import iscot.client.Client;
 import iscot.client.gui.LightIcon;
 import iscot.client.gui.VentilatorIcon;
 import iscot.enums.Areas;
 import iscot.enums.Type;
 import iscot.event.AreaVentilationOrderEvent;
 
-public class Ventilator {
+public class Ventilator extends Client{
 
 	/**
 	 * 
@@ -30,16 +31,24 @@ public class Ventilator {
 	 * @throws InterruptedException 
 	 * @throws ClassNotFoundException 
 	 */
+
+	public Ventilator(String ip, int port, Areas area) throws ClassNotFoundException, IOException{
+		super(ip, port, Type.ACTUATOR, area);
+	}
+
 	public static void main(String[] args) throws NumberFormatException, UnknownHostException, IOException, InterruptedException, ClassNotFoundException {
 		if(args.length!=3) {
 			System.err.println("Invalid arguments!");
 		}
 		else {
-			// TODO connect to server
-			
-			// TODO register with the server
 			Areas area=Areas.valueOf(args[2]);
 			
+			// TODO connect to server
+			Ventilator client = new Ventilator(args[0], Integer.parseInt(args[1]), area);
+			
+			// TODO register with the server
+			client.registerWithServer();
+
 			JFrame janela = new JFrame("Ventilador em "+area);
 			janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

@@ -19,13 +19,16 @@ public class IscoTServer {
 
     // Inicialização do server
     public void startServing() throws IOException {
-        ServerSocket socket = new ServerSocket(PORTO);
+        ServerSocket socket = new ServerSocket(porto);
         System.out.println("[IscoT Server] - A iniciar no porto " + porto);
         try{
             while(true){
                 Socket socketParaCliente = socket.accept();
                 System.out.println("[IscoT Server] - Nova ligação recebida e aciete de " + socketParaCliente.getInetAddress());
-                new ClientHandler(socketParaCliente, this);
+                
+                //Start do servidor dedicado para o cliente
+                ClientHandler client = new ClientHandler(socketParaCliente, this);
+                client.start();
             }
         } finally {
             socket.close();
@@ -51,7 +54,7 @@ public class IscoTServer {
     }
 
     public static void main(String[] args){
-        int port = (args.length > 0) ? Integer.parseInt(args[0]) : 8080;
+        int port = (args.length > 0) ? Integer.parseInt(args[0]) : PORTO;
         try{
             new IscoTServer(port).startServing();
         } catch (IOException e) {

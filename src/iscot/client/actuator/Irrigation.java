@@ -12,13 +12,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
+import iscot.client.Client;
 import iscot.client.gui.IrrigationIcon;
 import iscot.enums.Areas;
 import iscot.enums.Type;
 import iscot.event.AreaIrrigationOrderEvent;
 
-public class Irrigation {
+public class Irrigation extends Client{
 
 	/**
 	 * 
@@ -30,15 +30,24 @@ public class Irrigation {
 	 * @throws InterruptedException 
 	 * @throws ClassNotFoundException 
 	 */
+
+	public Irrigation(String ip, int port, Areas area) throws ClassNotFoundException, IOException{
+		super(ip, port, Type.ACTUATOR, area);
+	}
+
 	public static void main(String[] args) throws NumberFormatException, UnknownHostException, IOException, InterruptedException, ClassNotFoundException {
 		if(args.length!=3) {
 			System.err.println("Invalid arguments!");
 		}
 		else {
+			
+			Areas area=Areas.valueOf(args[2]);
+			
 			// TODO connect to server
+			Irrigation client = new Irrigation(args[0], Integer.parseInt(args[1]), area);
 			
 			// TODO register with the server
-			Areas area=Areas.valueOf(args[2]);
+			client.registerWithServer();
 			
 			JFrame janela = new JFrame("Irrigação em "+area);
 			janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

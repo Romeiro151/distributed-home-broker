@@ -71,7 +71,7 @@ public class ClientHandler extends Thread {
         this.area = eventoCliente.getArea();
         this.deviceId = server.generateDeviceID(clientType.name());
 
-        eventoCliente.setSerialVersionID(this.deviceId);
+        eventoCliente.setAssignedDeviceID(this.deviceId);
         server.registerClient(this);
 
         out.writeObject(eventoCliente);

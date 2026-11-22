@@ -4,7 +4,6 @@ import iscot.enums.Areas;
 import iscot.enums.Type;
 
 public class RegistrationEvent extends Event {
-    private static final long serialVersionID = 1L;                         //Para fazer conexão ao server
     private Type type;                                                      // Tipo de cliente remoto enum Type
     private String assignedDeviceID;
 
@@ -26,7 +25,7 @@ public class RegistrationEvent extends Event {
     }
 
     // Setter da String ID
-    public void setSerialVersionID(String assignedDeviceID){
+    public void setAssignedDeviceID(String assignedDeviceID){
         this.assignedDeviceID = assignedDeviceID;
     }
 
