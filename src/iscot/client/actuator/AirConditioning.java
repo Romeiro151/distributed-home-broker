@@ -13,6 +13,8 @@ import iscot.client.gui.ACIcon;
 import iscot.enums.Areas;
 import iscot.enums.Type;
 import iscot.event.AreaTemperatureOrderEvent;
+import iscot.event.Event;
+import iscot.event.TemperatureSensorEvent;
 import iscot.enums.AirConditioningMode;
 
 public class AirConditioning extends Client{
@@ -64,12 +66,26 @@ public class AirConditioning extends Client{
 			
 			Thread.sleep(5000);
 			ac.setAtivo(true);
-            ac.setModo(AirConditioningMode.Aquecimento);
+            ac.setModo(AirConditioningMode.Desligado);
 
 			// TODO: receive and handle messages from server
 			
+			// Fase 6
+			while(true){
+				Event event = (Event) client.receiveEvent();
+				if(event instanceof AreaTemperatureOrderEvent && ((AreaTemperatureOrderEvent) event).getType() == Type.DECIDER && ((AreaTemperatureOrderEvent) event).getArea() == client.getArea()){
+					Thread.sleep(2000);
+					ac.setAtivo(true);
+					ac.setTemperatura(19);
+					ac.setModo(((AreaTemperatureOrderEvent) event).getMode());
+					System.out.println("ACTUATOR: AC: set: " + ((AreaTemperatureOrderEvent) event).getMode());
+					
+				}
+			}
+			
 			// TODO: for first phase: create an appropriate event hardcoded locally and change the GUI accordingly
 
+			/*
 			// Exemplo desligado
 			Thread.sleep(3000);
 			AreaTemperatureOrderEvent ordemOff = new AreaTemperatureOrderEvent(area, AirConditioningMode.Desligado);
@@ -81,6 +97,8 @@ public class AirConditioning extends Client{
 			AreaTemperatureOrderEvent ordemOn = new AreaTemperatureOrderEvent(area, AirConditioningMode.Frio); // Escolhemos frio aqui, mas pode qualquer outro exceto "Desligado"
 			System.out.println("Ordem recebida - " + ordemOn);
 			ac.setAtivo(true);
+			*/
+
 		}
 	}
 }

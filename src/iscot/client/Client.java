@@ -30,6 +30,14 @@ public class Client {
         out.flush();
     }
 
+    public Type getType(){
+        return type;
+    }
+
+    public Areas getArea(){
+        return area;
+    }
+
     public synchronized void registerWithServer() throws IOException, ClassNotFoundException {
         sendEvent(new RegistrationEvent(this.area, this.type));
         RegistrationEvent resposta = (RegistrationEvent) receiveEvent();
