@@ -7,12 +7,15 @@ import java.net.UnknownHostException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import iscot.client.Client;
+
 import iscot.client.gui.ACIcon;
 import iscot.enums.Areas;
+import iscot.enums.Type;
 import iscot.event.AreaTemperatureOrderEvent;
 import iscot.enums.AirConditioningMode;
 
-public class AirConditioning {
+public class AirConditioning extends Client{
 
 	/**
 	 * 
@@ -24,15 +27,24 @@ public class AirConditioning {
 	 * @throws InterruptedException 
 	 * @throws ClassNotFoundException 
 	 */
+
+	public AirConditioning(String ip, int port, Areas area) throws ClassNotFoundException, IOException{
+		super(ip, port, Type.ACTUATOR, area);
+	}
+
 	public static void main(String[] args) throws NumberFormatException, UnknownHostException, IOException, InterruptedException, ClassNotFoundException {
 		if(args.length!=3) {
 			System.err.println("Invalid arguments!");
 		}
 		else {
+			
+			Areas area=Areas.valueOf(args[2]);
+			
 			// TODO connect to server
+			AirConditioning client = new AirConditioning(args[0], Integer.parseInt(args[1]), area);
 			
 			// TODO register with the server
-			Areas area=Areas.valueOf(args[2]);
+			client.registerWithServer();
 			
 			JFrame janela = new JFrame("AC em "+area);
 			janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

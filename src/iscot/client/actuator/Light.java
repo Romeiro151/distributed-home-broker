@@ -12,12 +12,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import iscot.client.Client;
 import iscot.client.gui.LightIcon;
 import iscot.enums.Areas;
 import iscot.enums.Type;
 import iscot.event.AreaLightingOrderEvent;
 
-public class Light {
+public class Light extends Client{
 
 	/**
 	 * 
@@ -29,16 +30,24 @@ public class Light {
 	 * @throws InterruptedException 
 	 * @throws ClassNotFoundException 
 	 */
+
+	public Light(String ip, int port, Areas area) throws ClassNotFoundException, IOException{
+		super(ip, port, Type.ACTUATOR, area);
+	}
+
 	public static void main(String[] args) throws NumberFormatException, UnknownHostException, IOException, InterruptedException, ClassNotFoundException {
 		if(args.length!=3) {
 			System.err.println("Invalid arguments!");
 		}
 		else {
-			// TODO connect to server
-			
-			// TODO register with the server
 			Areas area=Areas.valueOf(args[2]);
 			
+			// TODO connect to server
+			Light client = new Light(args[0], Integer.parseInt(args[1]), area);
+			
+			// TODO register with the server
+			client.registerWithServer();
+
 			JFrame janela = new JFrame("Luz em "+area);
 			janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

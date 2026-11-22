@@ -1,17 +1,33 @@
 package iscot.client.decider;
 
+import java.io.IOException;
+
+import iscot.client.Client;
+import iscot.client.actuator.Ventilator;
 import iscot.enums.AirConditioningMode;
 import iscot.enums.Areas;
+import iscot.enums.Type;
 import iscot.event.AreaTemperatureOrderEvent;
 import iscot.event.TemperatureSensorEvent;
 
-public class AirConditioningDecider {
-    public static void main(String[] args) throws NumberFormatException, InterruptedException {
+public class AirConditioningDecider extends Client{
+
+    public AirConditioningDecider(String ip, int port, Areas area) throws ClassNotFoundException, IOException{
+		super(ip, port, Type.DECIDER, area);
+	}
+
+    public static void main(String[] args) throws NumberFormatException, InterruptedException, ClassNotFoundException, IOException {
         if (args.length != 3){
             System.err.println("Invalid arguments!");
         }
         else {
-            Areas area = Areas.valueOf(args[2]);
+            Areas area=Areas.valueOf(args[2]);
+			
+            // connect to server
+			AirConditioningDecider client = new AirConditioningDecider(args[0], Integer.parseInt(args[1]), area);
+
+            // register with the server
+            client.registerWithServer();
 
             // Receção da leitura do  sensor
             Thread.sleep(3000);
