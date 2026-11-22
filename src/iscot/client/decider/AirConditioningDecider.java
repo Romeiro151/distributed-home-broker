@@ -64,6 +64,18 @@ public class AirConditioningDecider extends Client{
                         AreaTemperatureOrderEvent order = new AreaTemperatureOrderEvent(area, AirConditioningMode.Frio);
 						client.sendEvent(order);
 					}
+                    else if(((TemperatureSensorEvent) event).getValue() < 16){
+                        AreaTemperatureOrderEvent order = new AreaTemperatureOrderEvent(area, AirConditioningMode.Aquecimento);
+						client.sendEvent(order);
+					}
+                    else if(((TemperatureSensorEvent) event).getValue() > 19 && ((TemperatureSensorEvent) event).getValue() < 21){
+                        AreaTemperatureOrderEvent order = new AreaTemperatureOrderEvent(area, AirConditioningMode.Desligado);
+						client.sendEvent(order);
+					}
+                    else{
+                        AreaTemperatureOrderEvent order = new AreaTemperatureOrderEvent(area, AirConditioningMode.Ventilacao);
+						client.sendEvent(order);
+                    }
 				}
 			}
         }
