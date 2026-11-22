@@ -48,11 +48,9 @@ public class AirConditioning extends Client{
 			// TODO register with the server
 			client.registerWithServer();
 			
-			JFrame janela = new JFrame("AC em "+area);
-			janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			JFrame janela = new JFrame("AC em "+ area);
+			janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		
-			
 			// Criar os componentes gráficos
 			JPanel painel=new JPanel();
 			painel.setLayout(new BorderLayout());
@@ -74,7 +72,7 @@ public class AirConditioning extends Client{
 			while(true){
 				Event event = (Event) client.receiveEvent();
 				if(event instanceof AreaTemperatureOrderEvent && ((AreaTemperatureOrderEvent) event).getType() == Type.DECIDER && ((AreaTemperatureOrderEvent) event).getArea() == client.getArea()){
-					Thread.sleep(2000);
+					Thread.sleep(1000);
 					ac.setAtivo(true);
 					ac.setTemperatura(19);
 					ac.setModo(((AreaTemperatureOrderEvent) event).getMode());

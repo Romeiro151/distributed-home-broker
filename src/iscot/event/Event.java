@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 public abstract class Event implements Serializable {
-    private Areas area;
-    private LocalDateTime timestamp;
+    private final Areas area;
+    private final LocalDateTime timestamp;
     private String deviceID;
     
     // Contrutor da classe mãe Event

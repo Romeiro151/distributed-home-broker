@@ -20,6 +20,6 @@ public class TemperatureSensorEvent extends SensorEvent {
     // To String
     @Override
     public String toString() {
-        return "Temperature Sensor -[" + super.toString() +"] - Leu: " + getValue() + "%";
+        return "Temperature Sensor -[" + super.toString() +"] - Leu: " + getValue() + "ºC";
     }
 }

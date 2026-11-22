@@ -28,7 +28,7 @@ public class IscoTServer {
         try{
             while(true){
                 Socket socketParaCliente = socket.accept();
-                System.out.println("[IscoT Server] - Nova ligação recebida e aciete de " + socketParaCliente.getInetAddress());
+                System.out.println("[IscoT Server] - Nova ligação recebida e aceite em " + socketParaCliente.getInetAddress());
                 
                 //Start do servidor dedicado para o cliente
                 ClientHandler client = new ClientHandler(socketParaCliente, this);
