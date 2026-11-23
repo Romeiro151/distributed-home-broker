@@ -55,7 +55,7 @@ public class LightSensor extends Client{
 				    valor -> {
 				    	// TODO handle change in sensor
 				    	LightSensorEvent lse = new LightSensorEvent(area, valor);
-						System.out.println("HumiditySensorEvent: " + lse.getValue() + "% na área- " + lse.getArea());
+						System.out.println("LightSensor: " + lse.getValue() + "% na área- " + lse.getArea());
 				    });
 			painel.add(sensorControl,BorderLayout.CENTER);
 			janela.setContentPane(painel);

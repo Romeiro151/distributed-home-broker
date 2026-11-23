@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="d9e1cb55-fb73-4a13-b9f7-25a1586f4748" name="Changes" comment="Correção de todos os eventos e clarificação com comentários.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/iscot/client/actuator/AirConditioning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/actuator/AirConditioning.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/event/TemperatureSensorEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/event/TemperatureSensorEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iscot/server/IscoTServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/server/IscoTServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/client/sensor/LightSensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/client/sensor/LightSensor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iscot/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iscot/server/ClientHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

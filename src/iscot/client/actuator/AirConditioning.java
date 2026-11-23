@@ -73,10 +73,14 @@ public class AirConditioning extends Client{
 				Event event = (Event) client.receiveEvent();
 				if(event instanceof AreaTemperatureOrderEvent && ((AreaTemperatureOrderEvent) event).getType() == Type.DECIDER && ((AreaTemperatureOrderEvent) event).getArea() == client.getArea()){
 					Thread.sleep(1000);
+					AirConditioningMode modo = ((AreaTemperatureOrderEvent) event).getMode();
+					boolean ligar = (modo != AirConditioningMode.Desligado);
 					ac.setAtivo(true);
-					ac.setTemperatura(19);
-					ac.setModo(((AreaTemperatureOrderEvent) event).getMode());
-					System.out.println("ACTUATOR: AC: set: " + ((AreaTemperatureOrderEvent) event).getMode());
+					if(ligar){
+						ac.setTemperatura(19);
+					}
+					ac.setModo(modo);
+					client.registarAcao(ligar ? "AC Ligado (" + modo + ")" : "AC desligado");
 					
 				}
 			}

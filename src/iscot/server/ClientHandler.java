@@ -5,7 +5,6 @@ import iscot.event.Event;
 import iscot.event.RegistrationEvent;
 import iscot.enums.Type;
 
-import java.awt.List;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -22,6 +21,7 @@ public class ClientHandler extends Thread {
     private String deviceId;
     private Type clientType;
     private Areas area;
+
 
     // Inicializador precisa de uma socket e um server
     public ClientHandler(Socket socket, IscoTServer server) {
