@@ -90,7 +90,7 @@ public class Client {
 
     public synchronized void registarAcao(String acao){
         String hora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-        String registo = acao + " em " + hora;
+        String registo = acao + " às " + hora;
 
         historicoAcoes.add(registo);
         System.out.println("[" +(deviceID != null ? deviceID : type) + "] " + registo);
