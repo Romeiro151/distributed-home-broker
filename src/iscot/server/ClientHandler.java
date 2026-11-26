@@ -5,7 +5,6 @@ import iscot.event.Event;
 import iscot.event.RegistrationEvent;
 import iscot.enums.Type;
 
-import java.awt.List;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -36,7 +35,7 @@ public class ClientHandler extends Thread {
         try{
             doConnections(socket);
             serve();
-        } catch (EOFException e){
+        } catch (EOFException | InterruptedException e){
 
         } catch (IOException | ClassNotFoundException e){
             System.err.println("[Cliente Handler" + (deviceId != null ? " - " + deviceId : "") + "] Erro na ligação: " + e.getMessage());
@@ -56,10 +55,11 @@ public class ClientHandler extends Thread {
 
     // Função que trata da comunicação. Começa-se por tratar de receber o primeiro evento cliente. De seguid valida-se se o cliente é válido.
     // Cria-se um ID único para esse cliente e regista-se. Devolve-se o RegistrationEvente registado. Por fim, fica com a escuta ativa.
-    private void serve() throws IOException, ClassNotFoundException{
+    private void serve() throws IOException, ClassNotFoundException, InterruptedException{
         Object primeiraMsg = in.readObject();
         if(!(primeiraMsg instanceof RegistrationEvent)){
             System.err.println("[Client Handler] - Ligação recusada: O objeto não é um RegistrationEvent.");
+            return;
         }
 
         RegistrationEvent eventoCliente = (RegistrationEvent) primeiraMsg;
@@ -68,6 +68,7 @@ public class ClientHandler extends Thread {
             System.err.println("[Client Handler] - Ligação recusada: O cliente não tem Type ou Area.");
             out.writeObject(null);
             out.flush();
+            return;
         }
 
         this.clientType = eventoCliente.getType();
@@ -81,6 +82,7 @@ public class ClientHandler extends Thread {
         out.flush();
 
         // Fase 6
+        /*
         while (true) {
             Object objeto = in.readObject();
             System.out.println("[" + deviceId + "] Evento Recebido: " + objeto);
@@ -93,6 +95,37 @@ public class ClientHandler extends Thread {
                     c.out.reset();
                     c.out.writeObject(objeto);
                 }
+            }
+        }
+        */
+        
+        // Fase 7
+        Thread consumer = new Thread(() -> {
+            try {
+                while(!Thread.currentThread().isInterrupted()){
+                    Event event = server.consume(this);
+                    out.writeObject(event);
+                    out.flush();
+                }
+                
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+            
+        });
+        consumer.start();
+        
+        while (true) {
+            Object objeto = in.readObject();
+            System.out.println("[" + deviceId + "] Evento Recebido: " + objeto);
+            if (objeto instanceof Event event) {
+                if (deviceId.equals(event.getDeviceID())) {
+                    server.addEvent(event);
+                } else {
+                    System.err.println("O evento não pertence a este cliente.");
+                }
+            } else {
+                System.err.println("Foi recebido um objeto que não é um Event.");
             }
         }
     }
