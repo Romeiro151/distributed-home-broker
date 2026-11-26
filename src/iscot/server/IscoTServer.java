@@ -1,52 +1,47 @@
 package iscot.server;
 
 import java.io.IOException;
-import java.net.PortUnreachableException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
 
 import iscot.ModifiedCountDownLatch;
+import iscot.client.Client;
 import iscot.enums.Type;
 import iscot.event.Event;
 import iscot.event.SensorEvent;
+import iscot.event.HighOrderLevelEvent;
 
 public class IscoTServer {
     public static final int PORTO = 8080;
-    public static final int CAPACITY_EVENTOS = 30;
+    public static final int TEMPO_ESPERA_COUNTDOWN = 1000;
+
     private final int porto;
     private int numeroProxID = 1;
     private List<ClientHandler> clientesConectados = new ArrayList<>();
     private List<ClientHandler> clientesEventoAtual = new ArrayList<>();
-    private List<Event> eventos = new ArrayList<>(20);
-    private ReentrantLock lock = new ReentrantLock();
-    private Condition notEmpty = lock.newCondition();
-    private Condition notFull = lock.newCondition();
-    private Condition eventoDisponivel = lock.newCondition(); 
-    private ModifiedCountDownLatch mcdl = new ModifiedCountDownLatch(10);
+    private List<Event> eventos = new ArrayList<>();
+    private ModifiedCountDownLatch mcdl;
 
     public IscoTServer(int porto){
         this.porto = porto;
     }
 
-    // Inicialização do server
     public void startServing() throws IOException {
-        
-        // Fase 7 do:
-        Thread eventManager = new Thread(() -> {
-            try {
+
+        // Cria-se uma Thread dedicada a tratamento do evento recebido.
+        Thread trataEvento = new Thread(() -> {
+            try{
                 processEvents();
-            } catch (InterruptedException e) {
+            } catch (InterruptedException e){
                 Thread.currentThread().interrupt();
             }
         });
-        eventManager.start();
-        // done;
-        
+        trataEvento.start();
+
+        // Inicialização do Server.
         ServerSocket socket = new ServerSocket(porto);
         System.out.println("[IscoT Server] - A iniciar no porto " + porto);
         try{
@@ -63,64 +58,53 @@ public class IscoTServer {
         }
     }
 
-    // Fase 7
+    // Função usada pela Thread.
     public void processEvents() throws InterruptedException{
-            
-        while(!Thread.currentThread().isInterrupted()){
-            Event evento;
 
-            lock.lock();
-            try{
+        while(!Thread.currentThread().isInterrupted()) {
+            Event evento;
+            ModifiedCountDownLatch mLatch;
+
+            synchronized (this){
                 while(eventos.isEmpty()){
-                    notEmpty.await();
+                    wait();
                 }
+
                 evento = eventos.get(0);
                 clientesEventoAtual.clear();
 
-                //Se o evento for <algo>Event, criar lista clientes interessados e criar CDL
                 if(evento instanceof SensorEvent){
-                    for(ClientHandler c : clientesConectados){
-                        if(c.getClientType() == Type.DECIDER){
+                    for(ClientHandler c : clientesConectados) {
+                        if(c.getClientType() == Type.DECIDER && Objects.equals(c.getArea(), evento.getArea())){
                             clientesEventoAtual.add(c);
                         }
                     }
-                } else {
-                    for(ClientHandler c : clientesConectados){
-                        if(c.getClientType() == Type.ACTUATOR){
+                }else if(evento instanceof HighOrderLevelEvent){
+                    for (ClientHandler c : clientesConectados){
+                        if(c.getClientType() == Type.ACTUATOR && Objects.equals(c.getArea(),evento.getArea())){
                             clientesEventoAtual.add(c);
                         }
                     }
                 }
 
-
-                mcdl = new ModifiedCountDownLatch(clientesEventoAtual.size());
-
-                //Se não existir clientes destinatarios, descarta logo o evento e parte para o proximo
-                if (clientesEventoAtual.isEmpty()) {
-                    if(!eventos.isEmpty()){
-                        eventos.remove(0);
-                    }
-                    notFull.signalAll();
+                if(clientesEventoAtual.isEmpty()){
+                    eventos.remove(0);
                     continue;
                 }
 
-                eventoDisponivel.signalAll();
-                
-            } finally {
-                lock.unlock();
+                mLatch = new ModifiedCountDownLatch(clientesEventoAtual.size());
+                this.mcdl = mLatch;
+                notifyAll();
             }
 
-            mcdl.await(100000);
+            mLatch.await(TEMPO_ESPERA_COUNTDOWN);
 
-            lock.lock();
-            try {
-                if(!eventos.isEmpty()){    
+            synchronized (this){
+                clientesEventoAtual.clear();
+                this.mcdl = null;
+                if(!eventos.isEmpty()){
                     eventos.remove(0);
-
                 }
-                notFull.signalAll();
-            } finally {
-                lock.unlock();
             }
         }
     }
@@ -131,78 +115,54 @@ public class IscoTServer {
     }
 
     // Adiciona evento no servidor a ser tratado (Fase 7)
-    public void addEvent(Event event) throws InterruptedException {
-        lock.lock();
-        try {
-            ClientHandler possibleUser = null;
-            for (ClientHandler c : clientesConectados) {
-                if (Objects.equals(c.getDeviceId(), event.getDeviceID())) {
-                    possibleUser = c;
-                    break;
-                }
+    public synchronized void addEvent(Event event) {
+        ClientHandler cliente = null;
+        for(ClientHandler c : clientesConectados){
+            if(Objects.equals(c.getDeviceId(), event.getDeviceID())){
+                cliente = c;
+                break;
             }
-
-            if(possibleUser != null){
-                
-                while(eventos.size() >= CAPACITY_EVENTOS){
-                    notFull.await();
-                }
-                eventos.add(event);
-                notEmpty.signalAll();  
-            
-            }
-        } finally {
-            lock.unlock();
         }
-        
+
+        if((cliente.getClientType() == Type.SENSOR && event instanceof SensorEvent) || (cliente.getClientType() == Type.DECIDER && event instanceof HighOrderLevelEvent)){
+            eventos.add(event);
+            notifyAll();
+        }else{
+            System.err.println("[IscoT Server] - Evento rejeitado, pois o cliente: " + cliente.getDeviceId() + " (" + cliente.getClientType() + ") não pode lançar um evento " + event.getClass().getSimpleName());
+        }
     }
 
     // Consome evento do servidor (Fase 7)
-    public Event consume(ClientHandler client) throws InterruptedException {
-        
-        lock.lock();
-        try{
-            while(eventos.isEmpty() || !clientesEventoAtual.contains(client)){
-                eventoDisponivel.await();
-            }
-            clientesEventoAtual.remove(client);
-            mcdl.countdown();
-            return eventos.get(0);
-
-        } finally {
-            lock.unlock();
+    public synchronized Event consume(ClientHandler client) throws InterruptedException {
+        while (eventos.isEmpty() || !clientesEventoAtual.contains(client)){
+            wait();
         }
+        clientesEventoAtual.remove(client);
+        if(mcdl != null){
+            mcdl.countdown();
+        }
+        return eventos.get(0);
     }
 
     // Registra cliente
-    public void registerClient(ClientHandler client){
-        lock.lock();
-        try {
-            clientesConectados.add(client);
-            System.out.println("[IscoT Server] Cliente registrado com o ID: " + client.getDeviceId()
-                + " do tipo: " + client.getClientType() + " em: " + client.getArea() + ". Estão, neste momento, " + clientesConectados.size() + " cliente conectados.");
-        } finally {
-            lock.unlock();
-        }
-        
+    public synchronized void registerClient(ClientHandler client){
+        clientesConectados.add(client);
+        System.out.println("[IscoT Server] - Cliente registrado com ID: " + client.getDeviceId() + " do tipo " + client.getClientType() + " em " + client.getArea()
+        + ". Estão " + clientesConectados.size() + " clientes conectados agora.");
     }
 
     // Remove cliente
-    public void removeClient(ClientHandler client){
-        lock.lock();
-        try {
-            clientesConectados.remove(client);
-            System.out.println("[IscoT Server] Cliente desconectado: " + client.getDeviceId());
-        } finally {
-            lock.unlock();
+    public synchronized void removeClient(ClientHandler client){
+        clientesConectados.remove(client);
+        if(clientesEventoAtual.remove(client) && mcdl != null){
+            mcdl.countdown();
         }
-        
     }
 
     // Fase 6
     /*
     public List<ClientHandler> eventHandler(Event event, Type clientType){
-        //Estou a adicionar o evento a lista de eventos diretamente mas posteriormente a inserçao e tratamento de eventos vai ser gerida segundo os principios da concorrencia. Apenas para a Fase 6.
+        //Estou a adicionar o evento a lista de eventos diretamente, mas posteriormente a inserçao e tratamento de eventos vai ser gerida segundo os principios da concorrencia. Apenas para a Fase 6.
         eventos.add(event);
         List<ClientHandler> clients = new ArrayList<>();
         if(clientType == Type.SENSOR){

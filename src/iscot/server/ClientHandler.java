@@ -17,6 +17,7 @@ public class ClientHandler extends Thread {
     private final IscoTServer server;
     private ObjectOutputStream out;
     private ObjectInputStream in;
+    private Thread consumerThread;
 
     private String deviceId;
     private Type clientType;
@@ -41,7 +42,10 @@ public class ClientHandler extends Thread {
         } catch (IOException | ClassNotFoundException e){
             System.err.println("[Cliente Handler" + (deviceId != null ? " - " + deviceId : "") + "] Erro na ligação: " + e.getMessage());
         } finally {
-            if(deviceId != null){
+            if (consumerThread != null) {
+                consumerThread.interrupt();
+            }
+            if (deviceId != null) {
                 server.removeClient(this);
             }
             closeResources();
@@ -58,12 +62,10 @@ public class ClientHandler extends Thread {
     // Cria-se um ID único para esse cliente e regista-se. Devolve-se o RegistrationEvente registado. Por fim, fica com a escuta ativa.
     private void serve() throws IOException, ClassNotFoundException, InterruptedException{
         Object primeiraMsg = in.readObject();
-        if(!(primeiraMsg instanceof RegistrationEvent)){
+        if(!(primeiraMsg instanceof RegistrationEvent eventoCliente)){
             System.err.println("[Client Handler] - Ligação recusada: O objeto não é um RegistrationEvent.");
             return;
         }
-
-        RegistrationEvent eventoCliente = (RegistrationEvent) primeiraMsg;
 
         if (eventoCliente.getType() == null || eventoCliente.getArea() == null){
             System.err.println("[Client Handler] - Ligação recusada: O cliente não tem Type ou Area.");
@@ -99,34 +101,45 @@ public class ClientHandler extends Thread {
             }
         }
         */
-        
+
         // Fase 7
-        Thread consumer = new Thread(() -> {
-            try {
-                while(!Thread.currentThread().isInterrupted()){
-                    Event event = server.consume(this);
-                    out.writeObject(event);
-                    out.flush();
+        if(clientType == Type.ACTUATOR || clientType == Type.DECIDER){
+            consumerThread = new Thread(() -> {
+                try{
+                    while(!Thread.currentThread().isInterrupted()){
+                        Event event = server.consume(this);
+                        synchronized (out) {
+                            out.reset();
+                            out.writeObject(event);
+                            out.flush();
+                        }
+                    }
+                }catch(InterruptedException e){
+                    Thread.currentThread().interrupt();
+                } catch (IOException e) {
+                    if(!socket.isClosed()){
+                        System.err.println("[Client Handler - " + deviceId + "] Erro: " + e.getMessage());
+                    }
                 }
-                
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
-            }
-            
-        });
-        consumer.start();
-        
-        while (true) {
+            });
+            consumerThread.start();
+        }
+
+        while(!Thread.currentThread().isInterrupted()){
             Object objeto = in.readObject();
-            System.out.println("[" + deviceId + "] Evento Recebido: " + objeto);
-            if (objeto instanceof Event event) {
-                if (deviceId.equals(event.getDeviceID())) {
+            if(objeto instanceof Event event){
+                if(deviceId.equals(event.getDeviceID())){
+                    if(clientType == Type.SENSOR){
+                        System.out.println("[" + deviceId + " | " + event.getArea() + "] Leitura recebida: " + event);
+                    }else if(clientType == Type.DECIDER){
+                        System.out.println("[" + deviceId + " | " + event.getArea() + "] Ordem enviada: " + event);
+                    }
                     server.addEvent(event);
-                } else {
-                    System.err.println("O evento não pertence a este cliente.");
+                }else{
+                    System.err.println("[" + deviceId +"] O evento não pertence a este cliente");
                 }
-            } else {
-                System.err.println("Foi recebido um objeto que não é um Event.");
+            }else{
+                System.err.println("[" + deviceId + "] Foi recebido um objeto que não pertence a este cliente.");
             }
         }
     }
