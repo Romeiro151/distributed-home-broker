@@ -12,16 +12,16 @@ public class ModifiedCountDownLatch {
     }
 
     public synchronized void countdown(){ 
-        count--;
-        if(count == 0){
-            notifyAll();
-        }
-        
+        if (count>0) count--;
+        if(count == 0) notifyAll();
     }
 
     public synchronized void await(int waitPeriod) throws InterruptedException {
-        while(count > 0){
-            wait(waitPeriod);
+        long periodoMax = System.currentTimeMillis() + waitPeriod;
+        long restante = waitPeriod;
+        while(count > 0 && restante > 0){
+            wait(restante);
+            restante = periodoMax - System.currentTimeMillis();
         }    
         
     }
